@@ -1,4 +1,4 @@
 export interface StatViewProps {
     description: string,
-    value: string
+    value: string | number
 }

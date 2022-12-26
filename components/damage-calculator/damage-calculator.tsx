@@ -17,6 +17,8 @@ export interface Attributes {
   matk?: number;
   def?: number;
   mdef?: number;
+  acc?: number;
+  eva?: number;
 }
 
 export interface Monster {

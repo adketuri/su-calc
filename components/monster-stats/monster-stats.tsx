@@ -1,6 +1,7 @@
 import { FC } from "react";
 import { Card, CardBody, Divider, Text } from "@chakra-ui/react";
 import { MonsterStatsProps } from "./monster-stats.props";
+import { calculateHp } from "../player-stats";
 
 export const MonsterStats: FC<MonsterStatsProps> = ({ monster }) => {
   if (!monster) return null;
@@ -16,6 +17,8 @@ export const MonsterStats: FC<MonsterStatsProps> = ({ monster }) => {
           const key = _key as keyof typeof monster.attributes;
           return <Text key={key}>{`${monster.attributes[key]} ${key}`}</Text>;
         })}
+        <Divider my={4} />
+        <Text>Max HP: {calculateHp(monster.level, monster.stats)}</Text>
       </CardBody>
     </Card>
   );
