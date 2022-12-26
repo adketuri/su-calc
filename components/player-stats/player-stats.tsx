@@ -13,7 +13,7 @@ import { Attributes, Stats } from "../damage-calculator";
 import { StatView } from "../stat-view/stat-view";
 
 const statKeys = ["str", "vit", "int", "dex"];
-const attributeKeys = ["atk", "matk", "def", "mdef"];
+const attributeKeys = ["atk", "matk", "def", "mdef", "eva", "acc"];
 
 export const calculateHp = (level: number, stats: Stats) => {
   return Math.floor((level / 8) * (stats.vit * 6) + 18);
@@ -32,15 +32,14 @@ export const calculateDamage = (
 ) => {
   const critMultiplier = 1;
   const elementMultiplier = 1;
-  const atk = toNum(attackerAttributes.atk);
   const damage =
-    ((((atk + 5) / 7) * attackerStats.str) / 3) *
+    ((((toNum(attackerAttributes.atk) + 5) / 7) * toNum(attackerStats.str)) /
+      3) *
       (critMultiplier * elementMultiplier) +
     1;
   const reduction =
-    ((defenderStats.vit / 20) * (defenderAttributes.def || 0)) / 4;
+    ((toNum(defenderStats.vit) / 20) * toNum(defenderAttributes.def)) / 4;
   let result = Math.max(1, damage - reduction);
-
   return Math.max(1, Math.floor(result));
 };
 
@@ -56,7 +55,7 @@ export const calculateDamageRange = (
     defenderStats,
     defenderAttributes
   );
-  return Math.floor(dmg * 0.8) + Math.floor(dmg * 1.2);
+  return Math.floor(dmg * 0.8) + " - " + Math.floor(dmg * 1.2);
 };
 
 export const calculateAccuracy = (
@@ -153,10 +152,10 @@ export const PlayerStats: FC<PlayerStatsProps> = ({ monster }) => {
                 )}
               />
               <StatView
-                description="Player physical accuracy"
+                description="Player accuracy"
                 value={
                   calculateAccuracy(
-                    level,
+                    toNum(level),
                     stats,
                     attributes,
                     monster.level,
@@ -166,25 +165,28 @@ export const PlayerStats: FC<PlayerStatsProps> = ({ monster }) => {
                 }
               />
               <StatView
-                description="Physical hits to kill enemy (avg)"
-                value={Math.ceil(
-                  calculateHp(monster.level, monster.stats) /
-                    calculateDamage(
-                      stats,
-                      attributes,
-                      monster.stats,
-                      monster.attributes
-                    ) /
-                    (calculateAccuracy(
-                      level,
-                      stats,
-                      attributes,
-                      monster.level,
-                      monster.stats,
-                      monster.attributes
-                    ) /
-                      100)
-                )}
+                description="Player physical hits to kill enemy"
+                value={
+                  "~" +
+                  Math.ceil(
+                    calculateHp(monster.level, monster.stats) /
+                      calculateDamage(
+                        stats,
+                        attributes,
+                        monster.stats,
+                        monster.attributes
+                      ) /
+                      (calculateAccuracy(
+                        toNum(level),
+                        stats,
+                        attributes,
+                        monster.level,
+                        monster.stats,
+                        monster.attributes
+                      ) /
+                        100)
+                  )
+                }
               />
               <Divider my={4} />
               <StatView
@@ -195,6 +197,43 @@ export const PlayerStats: FC<PlayerStatsProps> = ({ monster }) => {
                   stats,
                   attributes
                 )}
+              />
+              <StatView
+                description="Enemy accuracy"
+                value={
+                  calculateAccuracy(
+                    monster.level,
+                    monster.stats,
+                    monster.attributes,
+                    toNum(level),
+                    stats,
+                    attributes
+                  ) + "%"
+                }
+              />
+              <StatView
+                description="Enemy physical hits to kill player"
+                value={
+                  "~" +
+                  Math.ceil(
+                    calculateHp(toNum(level), stats) /
+                      calculateDamage(
+                        monster.stats,
+                        monster.attributes,
+                        stats,
+                        attributes
+                      ) /
+                      (calculateAccuracy(
+                        monster.level,
+                        monster.stats,
+                        monster.attributes,
+                        toNum(level),
+                        stats,
+                        attributes
+                      ) /
+                        100)
+                  )
+                }
               />
             </>
           )}
