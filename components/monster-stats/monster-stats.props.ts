@@ -1,5 +1,5 @@
-import { Monster } from "../damage-calculator";
+import { MonsterConfig } from "../../hooks/use-monster";
 
 export interface MonsterStatsProps {
-    monster?: Monster
+    monster?: MonsterConfig
 }

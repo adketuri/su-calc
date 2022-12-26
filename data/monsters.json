@@ -193,7 +193,7 @@
 		"attributes": {
 			"atk": 15,
 			"def": 4,
-			"eva": 30,
+			"eva": 20,
 			"leech": 50
 		},
 		"skills": [
@@ -356,16 +356,17 @@
 		"box_sheet": "s_beholder_box",
 		"walk_speed_multiplier": 0,
 		"stats": {
-			"str": 2,
-			"dex": 9,
-			"vit": 4,
-			"int": 8
+			"str": 15,
+			"dex": 24,
+			"vit": 26,
+			"int": 15
 		},
 		"attributes": {
-			"atk": 20,
-			"matk": 16,
-			"def": 4,
-			"acc": 20
+			"atk": 22,
+			"matk": 22,
+			"def": 14,
+			"acc": 20,
+			"eva": 5
 		},
 		"skills": [
 			{
@@ -388,16 +389,17 @@
 		"box_sheet": "s_mushroom_box",
 		"walk_speed_multiplier": 0.5,
 		"stats": {
-			"str": 2,
-			"dex": 9,
-			"vit": 4,
-			"int": 8
+			"str": 23,
+			"dex": 24,
+			"vit": 36,
+			"int": 24
 		},
 		"attributes": {
 			"atk": 20,
-			"matk": 16,
-			"def": 4,
-			"acc": 20
+			"matk": 18,
+			"def": 24,
+			"acc": 0,
+			"eva": 2
 		},
 		"skills": [
 			{

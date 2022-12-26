@@ -2,6 +2,7 @@ import { Box, Flex, Select } from "@chakra-ui/react";
 import { FC, useState } from "react";
 
 import monsters from "../../data/monsters.json";
+import { useMonsterConfig } from "../../hooks/use-monster";
 import { MonsterStats } from "../monster-stats";
 import { PlayerStats } from "../player-stats";
 
@@ -35,11 +36,12 @@ export const DamageCalculator: FC = () => {
   const [selectedMonster, setSelectedMonster] = useState<undefined | Monster>(
     undefined
   );
+  const monster = useMonsterConfig(selectedMonster);
   return (
     <>
       <Flex direction="row" gap={4}>
         <Box flex={1}>
-          <PlayerStats monster={selectedMonster} />
+          <PlayerStats monster={monster} />
         </Box>
         <Box flex={1}>
           <Select
@@ -61,7 +63,7 @@ export const DamageCalculator: FC = () => {
               );
             })}
           </Select>
-          <MonsterStats monster={selectedMonster} />
+          <MonsterStats monster={monster} />
         </Box>
       </Flex>
     </>

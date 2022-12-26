@@ -3,6 +3,8 @@ import {
   Card,
   CardBody,
   Divider,
+  Flex,
+  Heading,
   Input,
   InputGroup,
   InputLeftAddon,
@@ -28,17 +30,23 @@ export const calculateDamage = (
   attackerStats: Stats,
   attackerAttributes: Attributes,
   defenderStats: Stats,
-  defenderAttributes: Attributes
+  defenderAttributes: Attributes,
+  physical: boolean
 ) => {
   const critMultiplier = 1;
   const elementMultiplier = 1;
   const damage =
-    ((((toNum(attackerAttributes.atk) + 5) / 7) * toNum(attackerStats.str)) /
+    ((((toNum(physical ? attackerAttributes.atk : attackerAttributes.matk) +
+      5) /
+      7) *
+      toNum(physical ? attackerStats.str : attackerStats.int)) /
       3) *
       (critMultiplier * elementMultiplier) +
     1;
   const reduction =
-    ((toNum(defenderStats.vit) / 20) * toNum(defenderAttributes.def)) / 4;
+    ((toNum(physical ? defenderStats.int : defenderStats.vit) / 20) *
+      toNum(physical ? defenderAttributes.def : defenderAttributes.mdef)) /
+    4;
   let result = Math.max(1, damage - reduction);
   return Math.max(1, Math.floor(result));
 };
@@ -47,13 +55,15 @@ export const calculateDamageRange = (
   attackerStats: Stats,
   attackerAttributes: Attributes,
   defenderStats: Stats,
-  defenderAttributes: Attributes
+  defenderAttributes: Attributes,
+  physical: boolean
 ) => {
   const dmg = calculateDamage(
     attackerStats,
     attackerAttributes,
     defenderStats,
-    defenderAttributes
+    defenderAttributes,
+    physical
   );
   return Math.floor(dmg * 0.8) + " - " + Math.floor(dmg * 1.2);
 };
@@ -74,7 +84,7 @@ export const calculateAccuracy = (
   const eva =
     100 +
     toNum(defenderStats.dex) +
-    toNum(defenderAttributes.eva) +
+    toNum(defenderAttributes.eva) * 2 +
     toNum(defenderLevel);
   return Math.min(100, acc - eva);
 };
@@ -135,7 +145,9 @@ export const PlayerStats: FC<PlayerStatsProps> = ({ monster }) => {
             );
           })}
           <Divider my={4} />
-          <Text>Max HP: {calculateHp(parseInt(level), stats)}</Text>
+          <Flex justifyContent="center">
+            <Heading>{calculateHp(toNum(level), stats)} hp</Heading>
+          </Flex>
         </CardBody>
       </Card>
       <Card mt={4}>
@@ -148,7 +160,18 @@ export const PlayerStats: FC<PlayerStatsProps> = ({ monster }) => {
                   stats,
                   attributes,
                   monster.stats,
-                  monster.attributes
+                  monster.attributes,
+                  true
+                )}
+              />
+              <StatView
+                description="Player damage to enemy (magical)"
+                value={calculateDamageRange(
+                  stats,
+                  attributes,
+                  monster.stats,
+                  monster.attributes,
+                  false
                 )}
               />
               <StatView
@@ -174,7 +197,33 @@ export const PlayerStats: FC<PlayerStatsProps> = ({ monster }) => {
                         stats,
                         attributes,
                         monster.stats,
+                        monster.attributes,
+                        true
+                      ) /
+                      (calculateAccuracy(
+                        toNum(level),
+                        stats,
+                        attributes,
+                        monster.level,
+                        monster.stats,
                         monster.attributes
+                      ) /
+                        100)
+                  )
+                }
+              />
+              <StatView
+                description="Player magical hits to kill enemy"
+                value={
+                  "~" +
+                  Math.ceil(
+                    calculateHp(monster.level, monster.stats) /
+                      calculateDamage(
+                        stats,
+                        attributes,
+                        monster.stats,
+                        monster.attributes,
+                        false
                       ) /
                       (calculateAccuracy(
                         toNum(level),
@@ -195,7 +244,18 @@ export const PlayerStats: FC<PlayerStatsProps> = ({ monster }) => {
                   monster.stats,
                   monster.attributes,
                   stats,
-                  attributes
+                  attributes,
+                  true
+                )}
+              />
+              <StatView
+                description="Enemy damage to player (magical)"
+                value={calculateDamageRange(
+                  monster.stats,
+                  monster.attributes,
+                  stats,
+                  attributes,
+                  false
                 )}
               />
               <StatView
@@ -221,7 +281,33 @@ export const PlayerStats: FC<PlayerStatsProps> = ({ monster }) => {
                         monster.stats,
                         monster.attributes,
                         stats,
+                        attributes,
+                        true
+                      ) /
+                      (calculateAccuracy(
+                        monster.level,
+                        monster.stats,
+                        monster.attributes,
+                        toNum(level),
+                        stats,
                         attributes
+                      ) /
+                        100)
+                  )
+                }
+              />
+              <StatView
+                description="Enemy magical hits to kill player"
+                value={
+                  "~" +
+                  Math.ceil(
+                    calculateHp(toNum(level), stats) /
+                      calculateDamage(
+                        monster.stats,
+                        monster.attributes,
+                        stats,
+                        attributes,
+                        false
                       ) /
                       (calculateAccuracy(
                         monster.level,
