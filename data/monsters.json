@@ -1,0 +1,726 @@
+{
+	"debug": {
+		"sprite_sheet": "s_rabbit",
+		"box_sheet": "s_rabbit_box",
+		"walk_speed_multiplier": 0.5,
+		"stats": {
+			"str": 0,
+			"dex": 0,
+			"vit": 100,
+			"int": 0
+		},
+		"attributes": {
+			"atk": 0,
+			"def": 0
+		},
+		"skills": [
+			{
+				"sid": "poison",
+				"priority": 10
+			}
+		],
+		"level": 100,
+		"exp": 1,
+		"drop": "snake_fang"
+	},
+	"rabbit": {
+		"sprite_sheet": "s_rabbit",
+		"box_sheet": "s_rabbit_box",
+		"element": "wind",
+		"walk_speed_multiplier": 0.5,
+		"stats": {
+			"str": 4,
+			"dex": 4,
+			"vit": 4,
+			"int": 4
+		},
+		"attributes": {
+			"atk": 3,
+			"def": 0,
+			"mdef": 0
+		},
+		"skills": [
+			{
+				"sid": "bite",
+				"priority": 10
+			}
+		],
+		"level": 1,
+		"exp": 4,
+		"drop": "rabbit_skin"
+	},
+	"snake": {
+		"sprite_sheet": "s_snake",
+		"box_sheet": "s_snake_box",
+		"walk_speed_multiplier": 0.5,
+		"stats": {
+			"str": 5,
+			"dex": 5,
+			"vit": 8,
+			"int": 5
+		},
+		"attributes": {
+			"atk": 8,
+			"def": 1
+		},
+		"skills": [
+			{
+				"sid": "poison",
+				"priority": 10
+			},
+			{
+				"sid": "stab",
+				"priority": 5
+			}
+		],
+		"level": 2,
+		"exp": 8,
+		"drop": "snake_fang"
+	},
+	"slime": {
+		"sprite_sheet": "s_slime",
+		"box_sheet": "s_slime_box",
+		"walk_speed_multiplier": 0.4,
+		"stats": {
+			"str": 7,
+			"dex": 7,
+			"vit": 7,
+			"int": 6
+		},
+		"attributes": {
+			"atk": 12,
+			"def": 3
+		},
+		"skills": [
+			{
+				"sid": "sacrifice",
+				"priority": 1,
+				"prerequisites": {
+					"monster_exists": "o_mon_slime_boss"
+				}
+			},
+			{
+				"sid": "throw_slime",
+				"priority": 5
+			},
+			{
+				"sid": "stab",
+				"priority": 5
+			}
+		],
+		"level": 4,
+		"exp": 20,
+		"drop": "slime_drop"
+	},
+	"slime_mini": {
+		"sprite_sheet": "s_slime",
+		"box_sheet": "s_slime_box",
+		"walk_speed_multiplier": 0.4,
+		"stats": {
+			"str": 3,
+			"dex": 7,
+			"vit": 1,
+			"int": 6
+		},
+		"attributes": {
+			"atk": 2,
+			"def": 0
+		},
+		"skills": [
+			{
+				"sid": "sacrifice",
+				"priority": 1,
+				"prerequisites": {
+					"monster_exists": "o_mon_slime_boss"
+				}
+			},
+			{
+				"sid": "throw_slime",
+				"priority": 5
+			},
+			{
+				"sid": "stab",
+				"priority": 5
+			}
+		],
+		"level": 1,
+		"exp": 20
+	},
+	"slime_boss": {
+		"sprite_sheet": "s_slime_boss",
+		"box_sheet": "s_slime_boss_box",
+		"walk_speed_multiplier": 0.2,
+		"stats": {
+			"str": 8,
+			"dex": 8,
+			"vit": 25,
+			"int": 5
+		},
+		"attributes": {
+			"atk": 7,
+			"def": 4,
+			"matk": 4,
+			"mdef": 4,
+			"eva": -80
+		},
+		"skills": [
+			{
+				"sid": "summon_slime",
+				"priority": 10
+			},
+			{
+				"sid": "barrage",
+				"priority": 10
+			},
+			{
+				"sid": "sludge",
+				"priority": 10
+			}
+		],
+		"level": 22,
+		"exp": 21
+	},
+	"bat": {
+		"sprite_sheet": "s_bat",
+		"box_sheet": "s_bat_box",
+		"walk_speed_multiplier": 1,
+		"stats": {
+			"str": 12,
+			"dex": 9,
+			"vit": 14,
+			"int": 8
+		},
+		"attributes": {
+			"atk": 15,
+			"def": 4,
+			"eva": 30,
+			"leech": 50
+		},
+		"skills": [
+			{
+				"sid": "bite_fast",
+				"priority": 1
+			}
+		],
+		"level": 6,
+		"exp": 35,
+		"drop": "bat_drop"
+	},
+	"goblin": {
+		"sprite_sheet": "s_goblin",
+		"box_sheet": "s_goblin_box",
+		"walk_speed_multiplier": 0.6,
+		"stats": {
+			"str": 18,
+			"dex": 9,
+			"vit": 20,
+			"int": 8
+		},
+		"attributes": {
+			"atk": 20,
+			"matk": 16,
+			"def": 4,
+			"acc": 20
+		},
+		"skills": [
+			{
+				"sid": "slash",
+				"priority": 1
+			},
+			{
+				"sid": "provoke",
+				"priority": 1
+			},
+			{
+				"sid": "counter",
+				"priority": 1,
+				"prerequisites": {
+					"hp_below": 0.5
+				}
+			}
+		],
+		"level": 8,
+		"exp": 50,
+		"drop": "goblin_drop"
+	},
+	"thief": {
+		"sprite_sheet": "s_thief",
+		"box_sheet": "s_slime_box",
+		"walk_speed_multiplier": 0.6,
+		"stats": {
+			"str": 24,
+			"dex": 12,
+			"vit": 20,
+			"int": 8
+		},
+		"attributes": {
+			"atk": 17,
+			"def": 6,
+			"acc": 20,
+			"eva": 20
+		},
+		"skills": [
+			{
+				"sid": "slash",
+				"priority": 1
+			},
+			{
+				"sid": "pierce",
+				"priority": 1
+			},
+			{
+				"sid": "leap_weak",
+				"priority": 1
+			}
+		],
+		"level": 8,
+		"exp": 60,
+		"drop": "thief_drop"
+	},
+	"bomb": {
+		"sprite_sheet": "s_bomb_enemy",
+		"box_sheet": "s_bomb_box",
+		"walk_speed_multiplier": 1,
+		"stats": {
+			"str": 40,
+			"dex": 0,
+			"vit": 0,
+			"int": 40
+		},
+		"attributes": {
+			"atk": 40,
+			"matk": 40,
+			"def": 0,
+			"mdef": 0,
+			"acc": 100,
+			"eva": -100
+		},
+		"skills": [
+			{
+				"sid": "detonate",
+				"priority": 1
+			}
+		],
+		"level": 0,
+		"exp": 0
+	},
+	"esteri": {
+		"sprite_sheet": "s_esteri_monster",
+		"box_sheet": "s_esteri_monster_box",
+		"walk_speed_multiplier": 0.6,
+		"stats": {
+			"str": 25,
+			"dex": 12,
+			"vit": 40,
+			"int": 8
+		},
+		"attributes": {
+			"atk": 27,
+			"def": 10,
+			"acc": -30,
+			"eva": -25
+		},
+		"skills": [
+			{
+				"sid": "throw_bomb",
+				"priority": 1
+			},
+			{
+				"sid": "cyclone",
+				"priority": 1
+			},
+			{
+				"sid": "slash",
+				"priority": 1
+			},
+			{
+				"sid": "counter",
+				"priority": 1,
+				"prerequisites": {
+					"hp_below": 0.7
+				}
+			},
+			{
+				"sid": "cyclone_2",
+				"priority": 1,
+				"prerequisites": {
+					"hp_below": 0.3
+				}
+			}
+		],
+		"level": 30,
+		"exp": 300
+	},
+	"beholder": {
+		"sprite_sheet": "s_beholder",
+		"box_sheet": "s_beholder_box",
+		"walk_speed_multiplier": 0,
+		"stats": {
+			"str": 2,
+			"dex": 9,
+			"vit": 4,
+			"int": 8
+		},
+		"attributes": {
+			"atk": 20,
+			"matk": 16,
+			"def": 4,
+			"acc": 20
+		},
+		"skills": [
+			{
+				"sid": "impact",
+				"priority": 1
+			},
+			{
+				"sid": "hook",
+				"priority": 1
+			}
+		],
+		"element": "water",
+		"level": 8,
+		"exp": 50,
+		"drop": "beholder_drop"
+	},
+	"mushroom": {
+		"element": "earth",
+		"sprite_sheet": "s_mushroom",
+		"box_sheet": "s_mushroom_box",
+		"walk_speed_multiplier": 0.5,
+		"stats": {
+			"str": 2,
+			"dex": 9,
+			"vit": 4,
+			"int": 8
+		},
+		"attributes": {
+			"atk": 20,
+			"matk": 16,
+			"def": 4,
+			"acc": 20
+		},
+		"skills": [
+			{
+				"sid": "mushroom",
+				"priority": 1
+			},
+			{
+				"sid": "earth",
+				"priority": 1
+			},
+			{
+				"sid": "heal",
+				"priority": 5,
+				"prerequisites": {
+					"hp_below": 0.5
+				}
+			}
+		],
+		"level": 8,
+		"exp": 50,
+		"drop": "mushroom_drop"
+	},
+	"harpy": {
+		"sprite_sheet": "s_harpy",
+		"box_sheet": "s_rabbit_box",
+		"element": "wind",
+		"walk_speed_multiplier": 0.5,
+		"stats": {
+			"str": 4,
+			"dex": 4,
+			"vit": 4,
+			"int": 4
+		},
+		"attributes": {
+			"atk": 3,
+			"def": 0,
+			"mdef": 0
+		},
+		"skills": [
+			{
+				"sid": "kick",
+				"priority": 10
+			},
+			{
+				"sid": "wind_tile",
+				"priority": 10
+			}
+		],
+		"level": 10,
+		"exp": 4,
+		"drop": "rabbit_skin"
+	},
+	"golem": {
+		"sprite_sheet": "s_golem",
+		"box_sheet": "s_golem_box",
+		"element": "earth",
+		"walk_speed_multiplier": 0.4,
+		"stats": {
+			"str": 4,
+			"dex": 4,
+			"vit": 40,
+			"int": 4
+		},
+		"attributes": {
+			"atk": 20,
+			"def": 30,
+			"mdef": 10
+		},
+		"skills": [
+			{
+				"sid": "earth",
+				"priority": 10
+			},
+			{
+				"sid": "rock_throw",
+				"priority": 10
+			}
+		],
+		"level": 10,
+		"exp": 4,
+		"drop": "rabbit_skin"
+	},
+	"golem_boss": {
+		"sprite_sheet": "s_golem_boss",
+		"box_sheet": "s_golem_boss_box",
+		"element": "earth",
+		"walk_speed_multiplier": 0.4,
+		"stats": {
+			"str": 4,
+			"dex": 4,
+			"vit": 40,
+			"int": 4
+		},
+		"attributes": {
+			"atk": 20,
+			"def": 30,
+			"mdef": 10
+		},
+		"skills": [
+			{
+				"sid": "golem_charge",
+				"priority": 10,
+				"prerequisites": {
+					"skill_not_ready": "golem_release"
+				}
+			},
+			{
+				"sid": "golem_release",
+				"priority": 10
+			},
+			{
+				"sid": "kick",
+				"priority": 10
+			},
+			{
+				"sid": "earth",
+				"priority": 10
+			},
+			{
+				"sid": "lava_armor",
+				"priority": 10
+			},
+			{
+				"sid": "summon_golem",
+				"priority": 10,
+				"prerequisites": {
+					"enemy_count_below": 6
+				}
+			}
+		],
+		"level": 10,
+		"exp": 4,
+		"drop": "rabbit_skin"
+	},
+	"leech": {
+		"sprite_sheet": "s_leech",
+		"box_sheet": "s_leech_box",
+		"walk_speed_multiplier": 0.5,
+		"stats": {
+			"str": 5,
+			"dex": 5,
+			"vit": 8,
+			"int": 5
+		},
+		"attributes": {
+			"atk": 8,
+			"def": 1
+		},
+		"skills": [
+			{
+				"sid": "poison",
+				"priority": 10
+			},
+			{
+				"sid": "stab",
+				"priority": 5
+			}
+		],
+		"level": 9,
+		"exp": 60,
+		"drop": "snake_fang"
+	},
+	"lizard": {
+		"sprite_sheet": "s_lizard",
+		"box_sheet": "s_lizard_box",
+		"element": "water",
+		"walk_speed_multiplier": 0.8,
+		"stats": {
+			"str": 4,
+			"dex": 4,
+			"vit": 4,
+			"int": 4
+		},
+		"attributes": {
+			"atk": 20,
+			"def": 30,
+			"mdef": 10
+		},
+		"skills": [
+			{
+				"sid": "kick",
+				"priority": 10
+			},
+			{
+				"sid": "hook",
+				"priority": 10
+			}
+		],
+		"level": 10,
+		"exp": 4,
+		"drop": "rabbit_skin"
+	},
+	"blue_flame": {
+		"sprite_sheet": "s_blue_flame",
+		"box_sheet": "s_blue_flame_box",
+		"element": "holy",
+		"walk_speed_multiplier": 0.4,
+		"stats": {
+			"str": 4,
+			"dex": 4,
+			"vit": 4,
+			"int": 4
+		},
+		"attributes": {
+			"atk": 20,
+			"def": 30,
+			"mdef": 10
+		},
+		"skills": [
+			{
+				"sid": "kick",
+				"priority": 10
+			},
+			{
+				"sid": "earth",
+				"priority": 10
+			}
+		],
+		"level": 10,
+		"exp": 4,
+		"drop": "rabbit_skin"
+	},
+	"cultist": {
+		"sprite_sheet": "s_cultist",
+		"box_sheet": "s_cultist_box",
+		"element": "dark",
+		"walk_speed_multiplier": 0.65,
+		"stats": {
+			"str": 4,
+			"dex": 4,
+			"vit": 4,
+			"int": 4
+		},
+		"attributes": {
+			"atk": 20,
+			"def": 30,
+			"mdef": 10
+		},
+		"skills": [
+			{
+				"sid": "kick",
+				"priority": 10
+			},
+			{
+				"sid": "earth",
+				"priority": 10
+			}
+		],
+		"level": 10,
+		"exp": 4,
+		"drop": "rabbit_skin"
+	},
+	"werewolf": {
+		"sprite_sheet": "s_werewolf",
+		"box_sheet": "s_werewolf_box",
+		"walk_speed_multiplier": 0.6,
+		"stats": {
+			"str": 25,
+			"dex": 12,
+			"vit": 40,
+			"int": 8
+		},
+		"attributes": {
+			"atk": 27,
+			"def": 10,
+			"acc": -30,
+			"eva": -25
+		},
+		"skills": [
+			{
+				"sid": "throw_bomb",
+				"priority": 1
+			},
+			{
+				"sid": "cyclone",
+				"priority": 1
+			},
+			{
+				"sid": "slash",
+				"priority": 1
+			},
+			{
+				"sid": "counter",
+				"priority": 1,
+				"prerequisites": {
+					"hp_below": 0.7
+				}
+			},
+			{
+				"sid": "cyclone_2",
+				"priority": 1,
+				"prerequisites": {
+					"hp_below": 0.3
+				}
+			}
+		],
+		"level": 1,
+		"exp": 300
+	},
+	"trap": {
+		"element": "neutral",
+		"sprite_sheet": "s_trap",
+		"box_sheet": "s_trap",
+		"walk_speed_multiplier": 0,
+		"stats": {
+			"str": 2,
+			"dex": 9,
+			"vit": 4,
+			"int": 8
+		},
+		"attributes": {
+			"atk": 20,
+			"matk": 16,
+			"def": 4,
+			"acc": 20,
+			"focus": 500
+		},
+		"skills": [
+			{
+				"sid": "trap_damage",
+				"priority": 1
+			}
+		],
+		"level": 1
+	}
+}
