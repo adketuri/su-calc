@@ -1,7 +1,6 @@
 import { FC } from "react";
 import { Card, CardBody, Divider, Text } from "@chakra-ui/react";
 import { MonsterStatsProps } from "./monster-stats.props";
-import { StatKey } from "../damage-calculator";
 
 export const MonsterStats: FC<MonsterStatsProps> = ({ monster }) => {
   if (!monster) return null;
